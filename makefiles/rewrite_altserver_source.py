@@ -63,7 +63,7 @@ if F.endswith('AltServerApp.cpp'):
     
     content = insertBefore(content, b'AltServerApp* AltServerApp::_instance = nullptr;', br'''
 #define IDCANCEL 0
-#define MessageBox(x, content, title, xx) (this->ShowAlert(title, content " (Ctrl-C to avoid)"), 1)
+#define MessageBox(x, content, title, xx) (this->ShowAlert(title, content), 1)
 
 // Observes all exceptions that occurred in all tasks in the given range.
 template<class T, class InIt>
