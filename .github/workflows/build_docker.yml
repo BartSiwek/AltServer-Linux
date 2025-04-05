@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: master             # set the branch to merge to
+          ref: new             # set the branch to merge to
           fetch-depth: 0
       -
         name: Set up QEMU
