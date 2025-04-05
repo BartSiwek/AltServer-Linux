@@ -21,6 +21,7 @@ if F.endswith('AltInclude.h'):
     content = content.replace(b'\r', b'')
 	
     content = content.replace(b'#include <windows.h>\n', b'')
+    content = content.replace(b'#include <debugapi.h>\n', b'')
 
 if F.endswith('AltServerApp.cpp'):
 
