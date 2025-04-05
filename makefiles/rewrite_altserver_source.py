@@ -17,6 +17,9 @@ content = content.replace(b'std::string_convert', b'std::wstring_convert')
 content = content.replace(b'boost/filesystem.hpp', b'filesystem')
 content = content.replace(b'boost::filesystem', b'std::filesystem')
 
+if F.endswith('AltInclude.h'):
+    content = content.replace(b'#include <windows.h>\n', b'')
+
 if F.endswith('AltServerApp.cpp'):
 
     # MessageBox
@@ -32,6 +35,7 @@ if F.endswith('AltServerApp.cpp'):
     content = content.replace(b'#pragma comment( lib, "gdiplus.lib" ) \n', b'')
     content = content.replace(b'#include <gdiplus.h> \n', b'')
     content = content.replace(b'#include "resource.h"\n', b'')
+    content = content.replace(b'#include <Guiddef.h>\n', b'')
 
     def removePart(content, start, end):
         content = re.sub(br'\n' + start + br'[\S\s]+?(' + end + br')', br'\1', content)
