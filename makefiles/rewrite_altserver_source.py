@@ -174,7 +174,7 @@ void AltServerApp::Stop()
 }
 ''')
 
-content = insertBefore(content, b'this->_helpError = NULL;\n}\n\nvoid AltServerApp::ShowInstallationNotification(std::string appName, std::string deviceName)', br'this->ShowAlert(wideTitle, wideMessage);')
+    content = insertBefore(content, b'this->_helpError = NULL;\n}\n\nvoid AltServerApp::ShowInstallationNotification(std::string appName, std::string deviceName)', br'this->ShowAlert(wideTitle, wideMessage);')
 
 if F.endswith('DeviceManager.cpp'):
     content = content.replace(b'\r', b'')
