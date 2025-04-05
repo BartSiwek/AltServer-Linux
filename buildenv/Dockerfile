@@ -2,7 +2,7 @@ ARG IMAGE=arm64v8/alpine:3.15
 
 FROM $IMAGE
 
-RUN  apk add zsh git curl wget g++ clang boost-static ninja boost-dev cmake make sudo bash vim libressl-dev util-linux-dev zlib-dev zlib-static
+RUN  apk add zsh git curl wget g++ clang boost-static ninja boost-dev cmake make sudo bash vim libressl-dev util-linux-dev zlib-dev zlib-static gnutls-dev
 
 RUN mkdir /buildenv
 

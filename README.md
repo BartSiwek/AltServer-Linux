@@ -40,7 +40,7 @@ The following environment var can be set for some special situation:
 
 - Preparation: `git clone --recursive https://github.com/NyaMisty/AltServer-Linux`
 
-- Install dependencies (see notes below): corecrypto_static, cpprestsdk static lib, boost static lib
+- Install dependencies (see notes below): corecrypto_static, cpprestsdk static lib, boost static lib, gnutls lib
 
 - Build:
   ```
@@ -55,7 +55,7 @@ The following environment var can be set for some special situation:
     1. Run alpine docker (change --platform to corresponding architecture you want): 
         docker run --platform=linux/arm/v7 --name altserver-builder-alpine-armv7 -it alpine:3.15 
     2. Install dependencies:
-        apk add zsh git curl wget g++ clang boost-static ninja boost-dev cmake make sudo bash vim libressl-dev util-linux-dev zlib-dev zlib-static
+        apk add zsh git curl wget g++ clang boost-static ninja boost-dev cmake make sudo bash vim libressl-dev util-linux-dev zlib-dev zlib-static gnutls-dev
     3. Install corecrypto
         download corecrypto from apple website, unzip corecrypto.zip; cd corecrypto; mkdir build; cd build; CC=clang CXX=clang++ cmake ..;
         vim CMakeFiles/Makefile2, delete line starts with "all: corecrypto_perf/....." and "all: corecrypto_test/.....", then make; make install
