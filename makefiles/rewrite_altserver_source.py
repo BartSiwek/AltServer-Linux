@@ -173,4 +173,9 @@ void AltServerApp::Stop()
 }
 ''')
 
+if F.endswith('DeviceManager.cpp'):
+    content = content.replace(b'\r', b'')
+	
+    content = content.replace(b'#include <libimobiledevice/src/idevice.h>\n', b'#include <src/idevice.h>\n')
+
 sys.stdout.buffer.write(content)
