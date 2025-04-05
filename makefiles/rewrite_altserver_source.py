@@ -53,7 +53,7 @@ if F.endswith('AltServerApp.cpp'):
     content = removePart(content, br'static int CALLBACK BrowseFolderCallback', br'\npplx::task<std::shared_ptr<Application>> AltServerApp::InstallApplication')
     content = removePart(content, br'\n.*? AltServerApp::Authenticate', br'\npplx::task<std::shared_ptr<Team>> AltServerApp::FetchTeam')
     content = removePart(content, br'void AltServerApp::ShowNotification', br'\nvoid AltServerApp::ShowErrorAlert')
-    content = removePart(content, br'MSGBOXPARAMSW parameters = {}', br'this->_helpError = NULL;')
+    content = removePart(content, br'MSGBOXPARAMSW parameters', br'this->_helpError = NULL;')
     content = removePart(content, br'bool AltServerApp::CheckDependencies', br'\nfs::path AltServerApp::certificatesDirectoryPath')
 
     def insertBefore(content, marker, newcontent):
