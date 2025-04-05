@@ -18,6 +18,8 @@ content = content.replace(b'boost/filesystem.hpp', b'filesystem')
 content = content.replace(b'boost::filesystem', b'std::filesystem')
 
 if F.endswith('AltInclude.h'):
+    content = content.replace(b'\r', b'')
+	
     content = content.replace(b'#include <windows.h>\n', b'')
 
 if F.endswith('AltServerApp.cpp'):
