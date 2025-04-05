@@ -48,12 +48,13 @@ if F.endswith('AltServerApp.cpp'):
     def removePart(content, start, end):
         content = re.sub(br'\n' + start + br'[\S\s]+?(' + end + br')', br'\1', content)
         return content
-    content = removePart(content, br'HRESULT result = CoCreateGuid(&_notificationIconGUID)', br'\n}\nAltServerApp::~AltServerApp()')
-    content = removePart(content, br'const char\* REGISTRY_ROOT_KEY', br'\nAltServerApp\* AltServerApp::_instance')	
+    content = removePart(content, br'\tHRESULT result = CoCreateGuid', br'\}\n\nAltServerApp::~AltServerApp()')
+    content = removePart(content, br'const char\* REGISTRY_ROOT_KEY', br'\n#if STAGING')
+    content = removePart(content, br'std::string _verificationCode;', br'\nAltServerApp\* AltServerApp::_instance')
     content = removePart(content, br'static int CALLBACK BrowseFolderCallback', br'\npplx::task<std::shared_ptr<Application>> AltServerApp::InstallApplication')
     content = removePart(content, br'\n.*? AltServerApp::Authenticate', br'\npplx::task<std::shared_ptr<Team>> AltServerApp::FetchTeam')
     content = removePart(content, br'void AltServerApp::ShowNotification', br'\nvoid AltServerApp::ShowErrorAlert')
-    content = removePart(content, br'[\s]+MSGBOXPARAMSW parameters', br'MessageBoxIndirectW')
+    content = removePart(content, br'\tMSGBOXPARAMSW parameters', br'\tthis->_helpError = NULL')
     content = removePart(content, br'bool AltServerApp::CheckDependencies', br'\nfs::path AltServerApp::certificatesDirectoryPath')
 
     def insertBefore(content, marker, newcontent):
@@ -174,7 +175,7 @@ void AltServerApp::Stop()
 }
 ''')
 
-    content = insertBefore(content, b'\tthis->_helpError = NULL;\n}\n\nvoid AltServerApp::ShowInstallationNotification(std::string appName, std::string deviceName)', b'\tthis->ShowAlert(wideTitle, wideMessage);\n')
+    content = insertBefore(content, b'\tthis->_helpError = NULL;\n}\n\nvoid AltServerApp::ShowInstallationNotification(std::string appName, std::string deviceName)', b'\n\tthis->ShowAlert(wideTitle, wideMessage);\n')
 
 if F.endswith('DeviceManager.cpp'):
     content = content.replace(b'\r', b'')
