@@ -53,7 +53,7 @@ if F.endswith('AltServerApp.cpp'):
     content = removePart(content, br'static int CALLBACK BrowseFolderCallback', br'\npplx::task<std::shared_ptr<Application>> AltServerApp::InstallApplication')
     content = removePart(content, br'\n.*? AltServerApp::Authenticate', br'\npplx::task<std::shared_ptr<Team>> AltServerApp::FetchTeam')
     content = removePart(content, br'void AltServerApp::ShowNotification', br'\nvoid AltServerApp::ShowErrorAlert')
-    content = removePart(content, br'MSGBOXPARAMSW parameters = {}', br'this->_helpError = NULL;\n}')
+    content = removePart(content, br'MSGBOXPARAMSW parameters = {}', br'this->_helpError = NULL;')
     content = removePart(content, br'bool AltServerApp::CheckDependencies', br'\nfs::path AltServerApp::certificatesDirectoryPath')
 
     def insertBefore(content, marker, newcontent):
@@ -174,7 +174,7 @@ void AltServerApp::Stop()
 }
 ''')
 
-    content = insertBefore(content, b'this->_helpError = NULL;\n}\n\nvoid AltServerApp::ShowInstallationNotification(std::string appName, std::string deviceName)', br'this->ShowAlert(wideTitle, wideMessage);')
+    content = insertBefore(content, b'\tthis->_helpError = NULL;\n}\n\nvoid AltServerApp::ShowInstallationNotification(std::string appName, std::string deviceName)', br'this->ShowAlert(wideTitle, wideMessage);')
 
 if F.endswith('DeviceManager.cpp'):
     content = content.replace(b'\r', b'')
