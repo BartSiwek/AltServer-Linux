@@ -23,6 +23,11 @@ if F.endswith('AltInclude.h'):
     content = content.replace(b'#include <windows.h>\n', b'')
     content = content.replace(b'#include <debugapi.h>\n', b'')
 
+if F.endswith('AltServerApp.h'):
+    content = content.replace(b'\r', b'')
+	
+    content = content.replace(b'GUID _notificationIconGUID;\n', b'')
+
 if F.endswith('AltServerApp.cpp'):
 
     # MessageBox
@@ -43,7 +48,8 @@ if F.endswith('AltServerApp.cpp'):
     def removePart(content, start, end):
         content = re.sub(br'\n' + start + br'[\S\s]+?(' + end + br')', br'\1', content)
         return content
-    content = removePart(content, br'const char\* REGISTRY_ROOT_KEY', br'\nAltServerApp\* AltServerApp::_instance')
+    content = removePart(content, br'HRESULT result = CoCreateGuid(&_notificationIconGUID)', br'\n}\nAltServerApp::~AltServerApp()')
+    content = removePart(content, br'const char\* REGISTRY_ROOT_KEY', br'\nAltServerApp\* AltServerApp::_instance')	
     content = removePart(content, br'static int CALLBACK BrowseFolderCallback', br'\npplx::task<std::shared_ptr<Application>> AltServerApp::InstallApplication')
     content = removePart(content, br'\n.*? AltServerApp::Authenticate', br'\npplx::task<std::shared_ptr<Team>> AltServerApp::FetchTeam')
     content = removePart(content, br'void AltServerApp::ShowNotification', br'\nvoid AltServerApp::ShowErrorAlert')
