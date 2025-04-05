@@ -85,7 +85,7 @@ main_newfiles := $(main_orifiles:$(main_srcroot)/%=$(main_patched_root)/%)
 $(main_patched_root)/%: $(main_srcroot)/%
 	mkdir -p `dirname "$@"`
 	python3 $(ROOT_DIR)/makefiles/rewrite_altserver_source.py "$<" > $@
-	cat "$<"
+	cat "$@"
 
 $(main_newfiles) : $(main_orifiles)
 
