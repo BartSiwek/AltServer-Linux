@@ -9,9 +9,9 @@ RUN mkdir /buildenv
 WORKDIR /buildenv
 
 RUN curl -JO 'https://developer.apple.com/file/?file=security&agree=Yes' -H 'Referer: https://developer.apple.com/security/' && unzip corecrypto.zip
-WORKDIR /buildenv/corecrypto
+WORKDIR /buildenv/corecrypto-2024
 RUN mkdir build; cd build; CC=clang CXX=clang++ cmake ..;
-WORKDIR /buildenv/corecrypto/build
+WORKDIR /buildenv/corecrypto-2024/build
 RUN sed -i -E 's|^(all: CMakeFiles\/corecrypto_perf)|#\1|' CMakeFiles/Makefile2; sed -i -E 's|^(all: CMakeFiles\/corecrypto_test)|#\1|' CMakeFiles/Makefile2
 RUN make -j6; make install
 
